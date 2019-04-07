@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "747253158831",
+    "firebase_url": "https://controletarefas-4033f.firebaseio.com",
+    "project_id": "controletarefas-4033f",
+    "storage_bucket": "controletarefas-4033f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747253158831:android:bfad4c58b7931215",
+        "android_client_info": {
+          "package_name": "com.example.controletarefas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747253158831-qkfiul37gcou8ehvjeigthcc2fmat32o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.controletarefas",
+            "certificate_hash": "349bcbc1cbed1d44600e03805875e9f6df01d01e"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApQtHCB0twDi5AfVq6G5W6WxWZkAWkyOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747253158831-vdahfa90replkl48090pon0nomp5i432.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

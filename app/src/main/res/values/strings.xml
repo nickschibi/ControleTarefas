@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ControleTarefas</string>
+    <!--Funcionario-->
+    <string name="email">e-mail</string>
+    <string name="senha">senha</string>
+    <string name="senha_masc">*********</string>
+    <string name="login">logar</string>
+    <string name="nome">nome</string>
+    <string name="sobrenome">sobrenome</string>
+    <string name="salvar">salvar</string>
+    <string name="alterarimagem">Alterar imagem</string>
+    <string name="novoDev">Não possuo cadastro</string>
+
+    <!--Tarefa-->
+
+
+</resources>
