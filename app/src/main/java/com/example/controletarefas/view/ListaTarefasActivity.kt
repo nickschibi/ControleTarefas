@@ -3,13 +3,8 @@ import android.support.design.widget.FloatingActionButton
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ListView
-import android.widget.Toast
-import com.example.controletarefas.MyListAdapter
 import com.example.controletarefas.R
-import com.example.controletarefas.TarefaActivity
 import com.example.controletarefas.model.Tarefa
 import com.google.firebase.auth.FirebaseAuth
 
@@ -22,7 +17,7 @@ class ListaTarefasActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista_tarefas)
         novaTarefaButton = findViewById(R.id.novaTarefaBtn)
         novaTarefaButton!!.setOnClickListener {
-            val intent = Intent(this, TarefaActivity :: class.java)
+            val intent = Intent(this, TarefaActivity:: class.java)
             startActivity(intent)
         }
 

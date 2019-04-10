@@ -1,17 +1,11 @@
 package com.example.controletarefas.presenter
 
-import android.app.Activity
-import android.util.Log
-import android.widget.Toast
-import com.example.controletarefas.RetrofitConfig
+
 import com.example.controletarefas.Utils
 import com.example.controletarefas.contratos.ContratoDesenvolvedor.*
 import com.example.controletarefas.model.Desenvolvedor
 import com.example.controletarefas.model.DesenvolvedorInteractor
 import com.example.controletarefas.model.Endereco
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DesenvolvedorPresenter(_view: View) :Presenter  {
 

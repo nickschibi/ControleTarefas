@@ -22,26 +22,10 @@ import android.widget.Toast
 import com.example.controletarefas.R
 import com.example.controletarefas.model.Endereco
 import com.example.controletarefas.presenter.DesenvolvedorPresenter
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.example.controletarefas.RetrofitConfig
-import com.example.controletarefas.Utils
 import com.example.controletarefas.contratos.ContratoDesenvolvedor.*
-import com.example.controletarefas.model.Desenvolvedor
-import kotlinx.android.synthetic.main.activity_desenvolvedor.*
-
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
-
 
 class DesenvolvedorActivity : AppCompatActivity(), View {
-    
+
 
     private var nomeEditText: EditText? = null
     private var sobrenomeEditText: EditText? = null
