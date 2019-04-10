@@ -5,21 +5,17 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 
 class RetrofitConfig {
 
-    private val retrofit: Retrofit? = null
-
-    constructor(){
-        Retrofit.Builder()
+    fun init() {
     }
 
     // a url sempre deve terminar com a barra se não ocorre Exception
-    fun RetrofitConfig(){
+    var retrofit =
         Retrofit.Builder()
             .baseUrl("https://viacep.com.br/ws/")
             .addConverterFactory(JacksonConverterFactory.create())
             .build()
-    }
 
-    fun getCEPService(): CepServico {
-        return this.retrofit!!.create(CepServico::class.java)
-    }
+
+    fun getCEPService(): CepServico = retrofit.create(CepServico::class.java)
+
 }

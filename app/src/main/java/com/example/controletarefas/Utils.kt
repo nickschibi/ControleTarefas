@@ -1,6 +1,7 @@
 package com.example.controletarefas
 
 import android.text.TextUtils
+import android.text.TextUtils.concat
 import android.util.Patterns
 import java.util.*
 import java.util.regex.Pattern
@@ -34,11 +35,15 @@ class Utils {
         }
 
         fun eSenha(senha: String): Boolean {
-
-            val ps = Pattern.compile("^(?=.{8})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!?._]).{8}$")
+            // Mínimo 8 caracteres, pelo menos 1 letra e 1 número:
+            //val ps = Pattern.compile("\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}\$\"")
+            val ps = Pattern.compile(".{8}")
             val ms = ps.matcher(senha)
-            return !campoEstaVazio(senha)&& ms.matches()
+            //return !campoEstaVazio(senha)&& ms.matches()
+            return true
         }
+
+
 
         fun eCPF(CPF: String): Boolean {
             var CPF = CPF
@@ -109,6 +114,41 @@ class Utils {
             }
 
         }
+
+        fun verificaCamposVaziosDev(nome: String, sobrenome: String, email: String, senha: String,
+                                 cpf: String, cep: String, rua: String, numero: String,bairro : String, cidade: String, estado: String): String?{
+            var msg : String? = ""    // Se inicializar a qui com null ele concatena "null" ¬¬
+
+            if(campoEstaVazio(nome)){
+                msg = msg.plus("nome")
+            }else if(campoEstaVazio(sobrenome)){
+                msg = msg.plus("sobrenome")
+            }else if(campoEstaVazio(email)){
+                msg = msg.plus("email")
+            }else if(campoEstaVazio(senha)){
+                msg = msg.plus("senha")
+            }else if(campoEstaVazio(cpf)){
+                msg = msg.plus("cpf")
+            }else if(campoEstaVazio(cep)){
+                msg = msg.plus("cep")
+            }else if(campoEstaVazio(rua)){
+                msg =  msg.plus("rua")
+            }else if(campoEstaVazio(numero)){
+                msg = msg.plus("numero")
+            }else if(campoEstaVazio(bairro)){
+                    msg = msg.plus("bairro")
+            }else if(campoEstaVazio(cidade)){
+                msg =  msg.plus("cidade")
+            }else if(campoEstaVazio(estado)){
+                msg =  msg.plus("estado")
+            }else{
+                msg = null
+            }
+            return msg
+        }
+
+
     }
+
 
 }

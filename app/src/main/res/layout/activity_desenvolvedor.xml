@@ -11,13 +11,14 @@
                   android:layout_height="wrap_content"
                   android:orientation="vertical">
 
-    <ImageView android:layout_width="80dp"
+    <ImageView android:id="@+id/imagemPerfil"
+            android:layout_width="80dp"
                android:layout_height="80dp"
                android:background="@drawable/retrato_dev"
                android:layout_marginTop="40dp"
                android:layout_marginLeft="130dp"
     />
-        <Button android:id="@+id/fotoButton"
+        <Button android:id="@+id/fotoPerfilButton"
                 android:layout_width="80dp"
                 android:layout_height="43dp"
                 android:layout_marginLeft="130dp"
@@ -80,7 +81,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="55dp"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789Çç_-@"/>
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789Çç_-@."/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -133,7 +134,8 @@
                     android:maxLength="9"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="55dp"/>
+                    android:layout_marginRight="55dp"
+                    android:inputType="number"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout

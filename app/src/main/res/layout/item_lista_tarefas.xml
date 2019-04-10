@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+            android:id="@+id/descricaoTextView"
+            android:text="@string/descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="14sp"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView android:text="@string/dataSolicitacaolabel"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="5dp"
+                    android:textSize="9sp"/>
+        <TextView android:text="@string/dataPrevistalabel"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="100dp"
+                  android:textSize="9sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <TextView android:id="@+id/dataDaSolicitacaoTextView"
+                  android:text="@string/dataSolicitacao"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="5dp"
+                  android:textSize="14sp"/>
+
+        <TextView android:id="@+id/dataPrevistaTextView"
+                  android:text="@string/dataPrevista"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="100dp"
+                  android:textSize="14sp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView android:text="@string/solicitantelabel"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="5dp"
+                  android:textSize="9sp"/>
+        <TextView android:text="@string/statuslabel"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="100dp"
+                  android:textSize="9sp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView android:id="@+id/solicitanteTextView"
+                  android:text="@string/solicitante"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="5dp"
+                  android:textSize="14sp"/>
+        <TextView android:id="@+id/statusTextView"
+                  android:text="@string/status"
+                  android:layout_height="wrap_content"
+                  android:layout_width="205dp"
+                  android:paddingLeft="100dp"
+                  android:textSize="14sp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,11 +1,26 @@
 package com.example.controletarefas.model
 
+
 class Tarefa {
-    private var descricaoAtividade: String? = null
-    private var solicitanteAtividade: String? = null
-    private var dataRegistroAtividade: String?=  null
-    private var dataPrevistaEntrega: String? = null
+     var idTarefa: String? = null
+     var descricaoAtividade: String? = null
+     var solicitanteAtividade: String? = null
+     var dataRegistroAtividade: String?=  null
+     var dataPrevistaEntrega: String? = null
+     var status: String? = null
 
 
-
+    constructor(
+        descricaoAtividade: String?,
+        solicitanteAtividade: String?,
+        dataRegistroAtividade: String?,
+        dataPrevistaEntrega: String?,
+        status: String?
+    ) {
+        this.descricaoAtividade = descricaoAtividade
+        this.solicitanteAtividade = solicitanteAtividade
+        this.dataRegistroAtividade = dataRegistroAtividade
+        this.dataPrevistaEntrega = dataPrevistaEntrega
+        this.status = status
+    }
 }

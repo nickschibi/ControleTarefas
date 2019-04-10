@@ -18,6 +18,17 @@
     <string name="estado">estado</string>
     <string name="numero">número</string>
     <string name="complemento">complemento</string>
+    <string name="descricao">descricao tarefa</string>
+    <string name="dataSolicitacao">xx/xx/xxxx</string>
+    <string name="dataPrevista">xx/xx/xxxx</string>
+    <string name="solicitante">solicitante</string>
+    <string name="status">status</string>
+    <string name="dataSolicitacaolabel">data da solicitação</string>
+    <string name="dataPrevistalabel">data prevista</string>
+    <string name="solicitantelabel">solicitante</string>
+    <string name="statuslabel">status</string>
+    <string name="dtSolicitacao">data da solicitação</string>
+    <string name="dtPrevisao">data prevista</string>
 
     <!--Tarefa-->
 
