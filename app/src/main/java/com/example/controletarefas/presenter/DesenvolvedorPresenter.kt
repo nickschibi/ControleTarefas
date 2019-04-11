@@ -42,8 +42,9 @@ class DesenvolvedorPresenter(_view: View) :Presenter  {
         }
         else {
 
-            var desenvolvedor = Desenvolvedor(_nome,_sobrenome,
+            var desenvolvedor = Desenvolvedor("",_nome,_sobrenome,
                 _email, _senha, _cpf, _endereco)
+
 
             interactor.autenticaUsuario(_email, _senha, desenvolvedor)
 

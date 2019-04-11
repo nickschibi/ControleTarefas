@@ -1,6 +1,6 @@
 package com.example.controletarefas.model
 
-data class Desenvolvedor(var nome : String, var sobrenome: String, var email : String, var senha : String , var cpf : String , var endereco: Endereco){
+data class Desenvolvedor(var uid : String, var nome : String, var sobrenome: String, var email : String, var senha : String , var cpf : String , var endereco: Endereco){
 //    private var nome : String? = null
 //    private var sobrenome : String? = null
 //    private var email: String? = null

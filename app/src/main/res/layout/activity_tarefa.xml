@@ -105,25 +105,12 @@
                 android:layout_marginRight="55dp"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç"/>
     </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        <EditText
-                android:id="@+id/statusEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/status"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColorHint="@color/colorAccent"
-                android:backgroundTint="@color/colorAccent"
-                android:maxLength="100"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="55dp"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç"/>
-    </android.support.design.widget.TextInputLayout>
+    <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="352dp"
+            android:layout_height="40dp"/>
+
 
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/saveBtn"

@@ -1,7 +1,16 @@
 package com.example.controletarefas.model
 
+import java.io.Serializable
 
-class Tarefa {
+
+/*Serializable permite que eu passe a instancia de um objeto por intents
+porem se esse objeto tiver algum atributo não serializavel, ele nao vai,
+como por exemplo um Context.
+se no caso eu tivesse um Toast eu teria que fazer com que ele fosse ignorado utilizando "transient(termo em java, kotlin não sei)"
+
+ */
+
+class Tarefa : Serializable {
      var idTarefa: String? = null
      var descricaoAtividade: String? = null
      var solicitanteAtividade: String? = null
@@ -10,17 +19,4 @@ class Tarefa {
      var status: String? = null
 
 
-    constructor(
-        descricaoAtividade: String?,
-        solicitanteAtividade: String?,
-        dataRegistroAtividade: String?,
-        dataPrevistaEntrega: String?,
-        status: String?
-    ) {
-        this.descricaoAtividade = descricaoAtividade
-        this.solicitanteAtividade = solicitanteAtividade
-        this.dataRegistroAtividade = dataRegistroAtividade
-        this.dataPrevistaEntrega = dataPrevistaEntrega
-        this.status = status
-    }
 }

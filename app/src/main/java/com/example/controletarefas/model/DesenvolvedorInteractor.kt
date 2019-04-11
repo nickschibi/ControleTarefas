@@ -41,8 +41,8 @@ class DesenvolvedorInteractor (_presenter : Presenter): Interactor {
                 if (task.isSuccessful) {
                     Log.d(TAG, "Criado Usuario com email com sucesso")
                     val userId = auth!!.currentUser!!.uid
-
                     val key =  databaseReference!!.child("desenvolvedores").push().key
+                    _desenvolvedor.uid = key!!
                     databaseReference!!.child("desenvolvedores").child(key!!).setValue(_desenvolvedor)
 
                     confirmacaoEmail()
