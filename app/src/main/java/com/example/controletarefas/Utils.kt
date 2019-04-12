@@ -1,10 +1,14 @@
 package com.example.controletarefas
 
 import android.text.TextUtils
-import android.text.TextUtils.concat
 import android.util.Patterns
 import java.util.*
 import java.util.regex.Pattern
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.widget.ImageView
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 
 // classe de verificação relacionada a validação de campos entre outros
@@ -41,6 +45,10 @@ class Utils {
             val ms = ps.matcher(senha)
             //return !campoEstaVazio(senha)&& ms.matches()
             return true
+        }
+
+        fun verificaTamanho(s : String ) : Boolean {
+            return s.length >= 3
         }
 
 
@@ -147,6 +155,17 @@ class Utils {
             return msg
         }
 
+
+        fun toByteArray(image: Bitmap): ByteArray {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            image.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream)
+            return byteArrayOutputStream.toByteArray()
+        }
+
+        fun toBitmap(bytes : ByteArray): Bitmap {
+            val byteArrayInputStream = ByteArrayInputStream(bytes)
+            return BitmapFactory.decodeStream(byteArrayInputStream)
+        }
 
     }
 

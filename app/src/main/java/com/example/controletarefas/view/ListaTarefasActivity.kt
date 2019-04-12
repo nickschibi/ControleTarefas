@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.MenuItem
 import android.widget.AdapterView
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
 import com.example.controletarefas.MyListAdapter
@@ -20,7 +21,8 @@ class ListaTarefasActivity : AppCompatActivity(), View {
     private var novaTarefaButton: FloatingActionButton? = null
     private var tarefasListView: ListView? = null
     private var tarefaSelecionada: Tarefa? = null
-
+    private var perfilBtn : ImageButton? = null
+    private var userId : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,11 @@ class ListaTarefasActivity : AppCompatActivity(), View {
         presenter!!.inicializaFirebase(this)
         presenter!!.carregaLista()
         novaTarefaButton = findViewById(R.id.novaTarefaBtn)
+        perfilBtn = findViewById(R.id.btnPerfil)
+        perfilBtn!!.setOnClickListener {
+            val intent = Intent(this,DesenvolvedorActivity::class.java)
+            startActivity(intent)
+        }
 
         novaTarefaButton!!.setOnClickListener {
             val intent = Intent(this, TarefaActivity::class.java)

@@ -18,6 +18,8 @@ interface ContratoTarefa {
         fun atualizaTarefa(_idTareafa : String , descricao: String,solicitante: String?,
                            dtSolicita: String?, dtPrevista: String, status: String)
         fun preencheCampoStatus(_this: Context): ArrayAdapter<*>
+        fun registrarData():String
+
     }
 
     interface Interactor{

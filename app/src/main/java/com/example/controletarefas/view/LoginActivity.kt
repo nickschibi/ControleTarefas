@@ -1,57 +1,51 @@
 package com.example.controletarefas.view
-
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Build
 import android.support.annotation.RequiresApi
-import android.support.design.widget.TextInputEditText
-import android.support.design.widget.TextInputLayout
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.controletarefas.ControleTarefasApplication
 import com.example.controletarefas.R
-import com.example.controletarefas.Utils
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
+import com.example.controletarefas.contratos.ContratoLogin.*
+import com.example.controletarefas.presenter.LoginPresenter
 
-class LoginActivity : AppCompatActivity() {
-    private val TAG = "LoginActivity"
+class LoginActivity : AppCompatActivity(), View {
+
     private var emailLoginEditText : EditText? = null
     private var senhaLoginEditText : EditText? = null
     private var logarButton : Button? = null
     private var novoDevButton : Button? = null
     private var email : String? = null
     private var senha: String? = null
-
-    //referencia ao banco de dados
-    private var auth : FirebaseAuth?= null
-   // private var firebaseApp: FirebaseApp?= null
+    private var presenter: Presenter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        presenter = LoginPresenter(this)
         //Mudar a cor da barra, versões mais antigas
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColorto(R.color.colorPrimaryDark)
         }
-         //firebaseApp = FirebaseApp.initializeApp(this)
 
         emailLoginEditText = findViewById(R.id.emailLoginEditText) as EditText
         senhaLoginEditText = findViewById(R.id.senhaLoginEditText) as EditText
         logarButton = findViewById(R.id.logarButton) as Button
         novoDevButton = findViewById(R.id.novoDevButton) as Button
-        auth = FirebaseAuth.getInstance()
-        novoDevButton!!.setOnClickListener { startActivity((
-                    Intent(this, DesenvolvedorActivity::class.java))) }
+
+        novoDevButton!!.setOnClickListener {
+                    val intent = Intent(this, DesenvolvedorActivity::class.java)
+                     intent.putExtra("novo", "novo")
+                      startActivity(intent)}
 
         logarButton!!.setOnClickListener { loginUser() }
-
 
 
     }//
@@ -64,39 +58,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(){
-        var dadosCorretos : Boolean? = false
         email= emailLoginEditText?.text.toString()
         senha=senhaLoginEditText?.text.toString()
 
-        if (Utils.emailEValido(email!!) && !Utils.campoEstaVazio(senha!!))
-        {
-            dadosCorretos = true
-        }else{
-            Toast.makeText(this,"Dados inválidos",Toast.LENGTH_LONG).show()
-        }
-
-
-        if(dadosCorretos == true) {
-            auth!!.signInWithEmailAndPassword(
-                emailLoginEditText!!.text.toString(),
-                senhaLoginEditText!!.text.toString()
-            ).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "logado com sucesso")
-                    updateUi()
-                } else {
-                    Log.e(TAG, "erro ao logar", task.exception)
-                    //colocar isso no else superior depois
-                    Toast.makeText(this, "Erro na autenticação de usuário", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-        updateUi()
+         presenter!!.loginUser(email!!, senha!!)
     }
-    private fun updateUi(){
+
+    override fun updateUi(_uid: String) {
         val intent = Intent(this@LoginActivity, ListaTarefasActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        ControleTarefasApplication.uid = _uid
         startActivity(intent)
     }
 
+    override fun exibeToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    }
 }

@@ -1,32 +1,23 @@
 package com.example.controletarefas.view
 
-import android.app.Activity
-import android.app.Instrumentation
-import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.support.v4.content.FileProvider
-import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
+import com.example.controletarefas.ControleTarefasApplication
 import com.example.controletarefas.R
 import com.example.controletarefas.model.Endereco
 import com.example.controletarefas.presenter.DesenvolvedorPresenter
 import com.example.controletarefas.contratos.ContratoDesenvolvedor.*
+import com.example.controletarefas.MaskWatcher
+import com.example.controletarefas.model.Desenvolvedor
+
 
 class DesenvolvedorActivity : AppCompatActivity(), View {
-
-
     private var nomeEditText: EditText? = null
     private var sobrenomeEditText: EditText? = null
     private var emailEditText: EditText? = null
@@ -41,17 +32,20 @@ class DesenvolvedorActivity : AppCompatActivity(), View {
     private var cidadeEditText: EditText? = null
     private var estadoEditText: EditText? = null
     private var cep: String? = null
-    private var presenter : Presenter? = null
-    private var endereco : Endereco? = null
-    private var fotoPerfilButton : Button? = null
-    private var fotoPerfil : ImageView? = null
-
+    private var presenter: Presenter? = null
+    private var endereco: Endereco? = null
+    private var uid : String? = null
+    private var updateFlag : Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_desenvolvedor)
         presenter = DesenvolvedorPresenter(this)
+        if(ControleTarefasApplication.uid != null)  {
+            uid = ControleTarefasApplication.uid
+            presenter!!.trazDesenvolvedor(uid!!)
+        }
 
         nomeEditText = findViewById(R.id.nomeEditText)
         sobrenomeEditText = findViewById(R.id.sobrenomeEditText)
@@ -66,50 +60,45 @@ class DesenvolvedorActivity : AppCompatActivity(), View {
         cidadeEditText = findViewById(R.id.cidadeEditText)
         estadoEditText = findViewById(R.id.estadoEditText)
         salvarDevButton = findViewById(R.id.salvarDevButton)
-        fotoPerfilButton = findViewById(R.id.fotoPerfilButton)
-        fotoPerfil= findViewById(R.id.imagemPerfil)
-        fotoPerfilButton!!.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage("incluir nova foto usando:")
-            builder.setPositiveButton("Camera"){dialog, which ->
-
-                tirarFoto()
-                //root_layout.setBackgroundColor(Color.RED)
-            }
-
-            builder.setNegativeButton("Galeria"){dialog,which ->
-
-            }
-            val dialog: AlertDialog = builder.create()
-
-            // Display the alert dialog on app interface
-            dialog.show()
-        }
-
-
-
         salvarDevButton!!.setOnClickListener {
-            presenter!!.criarDesenvolvedor(
-                nomeEditText!!.text.toString(), sobrenomeEditText!!.text.toString(), emailEditText!!.text.toString(),
-                senhaEditText!!.text.toString(), cpfEditText!!.text.toString(), endereco!!,
-                numeroEditText!!.text.toString(), complementoEditText!!.text.toString()) }
 
+            if(updateFlag== true ){
+
+                presenter!!.atualizaDesenvolvedor( uid!!,nomeEditText!!.text.toString(),
+                    sobrenomeEditText!!.text.toString(),
+                    emailEditText!!.text.toString(),
+                    senhaEditText!!.text.toString(),
+                    cpfEditText!!.text.toString(),
+                    endereco!!,
+                    numeroEditText!!.text.toString(),
+                    complementoEditText!!.text.toString())
+
+
+            }else {
+                presenter!!.criarDesenvolvedor(
+                    nomeEditText!!.text.toString(),
+                    sobrenomeEditText!!.text.toString(),
+                    emailEditText!!.text.toString(),
+                    senhaEditText!!.text.toString(),
+                    cpfEditText!!.text.toString(),
+                    endereco!!,
+                    numeroEditText!!.text.toString(),
+                    complementoEditText!!.text.toString()
+                )
+            }
+        }
+        cpfEditText!!.addTextChangedListener(MaskWatcher("###.###.###-##"))
         cepEditText!!.addTextChangedListener(object : TextWatcher {
             var isUpdating = false
-
             override fun afterTextChanged(s: Editable) {
-                if(cepEditText!!.text.toString().length == 9){
-                    presenter!!.buscaEnderecoPorCEP(cepEditText!!.text.toString())
-                }
-            }
+                if (cepEditText!!.text.toString().length == 9) {
+                    presenter!!.buscaEnderecoPorCEP(cepEditText!!.text.toString()) } }
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {}
+                count: Int, after: Int) {}
             override fun onTextChanged(
                 s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
+                before: Int, count: Int) {
                 if (isUpdating) {
                     isUpdating = false
                     return
@@ -143,34 +132,13 @@ class DesenvolvedorActivity : AppCompatActivity(), View {
     }
 
 
-    //passa para main quem é o desenvolvedor conectado
-    override fun updateUi(_userId : String) {
+    override fun updateUi(_userId: String) {
         val intent = Intent(this@DesenvolvedorActivity, ListaTarefasActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        //intent.putExtra("uid",_userId)
+        ControleTarefasApplication.uid = _userId
         startActivity(intent)
     }
 
-
-   private fun tirarFoto(){
-
-       val intent = Intent(Intent.ACTION_PICK)
-       intent.type = "image/*"
-       startActivityForResult(intent,0)
-
-   }
-
-    var urifotoSelecionada : Uri? = null
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==0 && resultCode == Activity.RESULT_OK && data != null){
-            //ao selecionar a imagem
-            urifotoSelecionada = data.data
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,urifotoSelecionada)
-            val bitmapDrawable = BitmapDrawable(bitmap)
-            fotoPerfil!!.setBackgroundDrawable(bitmapDrawable)
-
-        }
-    }
 
     override fun preencheCamposEndereco(_endereco: Endereco) {
         estadoEditText!!.setText(_endereco!!.uf)
@@ -183,4 +151,25 @@ class DesenvolvedorActivity : AppCompatActivity(), View {
     override fun exibeToast(_msg: String) {
         Toast.makeText(this, _msg, Toast.LENGTH_LONG).show()
     }
+
+
+    override fun preencheCamposDev(desenvolvedor: Desenvolvedor) {
+        nomeEditText!!.setText(desenvolvedor.nome)
+        sobrenomeEditText!!.setText(desenvolvedor.sobrenome)
+        emailEditText!!.setText(desenvolvedor.email)
+        senhaEditText!!.setText(desenvolvedor.senha)
+        cpfEditText!!.setText(desenvolvedor.cpf)
+        cepEditText!!.setText(desenvolvedor.endereco!!.cep)
+        estadoEditText!!.setText(desenvolvedor.endereco!!.uf)
+        cidadeEditText!!.setText(desenvolvedor.endereco!!.localidade)
+        bairroEditText!!.setText(desenvolvedor.endereco!!.bairro)
+        ruaEditText!!.setText(desenvolvedor.endereco!!.logradouro)
+        complementoEditText!!.setText(desenvolvedor.endereco!!.complemento)
+        numeroEditText!!.setText(desenvolvedor.endereco!!.numero)
+        updateFlag = true
+    }
+
+
+
+
 }

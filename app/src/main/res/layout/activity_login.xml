@@ -30,7 +30,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="55dp"
                 android:layout_marginRight="55dp"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@_Çç"/>
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.@_Çç"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

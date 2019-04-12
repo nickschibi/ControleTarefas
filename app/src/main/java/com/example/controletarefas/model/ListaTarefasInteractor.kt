@@ -16,13 +16,9 @@ class ListaTarefasInteractor(_presenter : Presenter) : Interactor {
         FirebaseApp.initializeApp(_this)
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase!!.getReference()
-    }
 
-    override fun trazListaTarefas(){
         var query : Query?= null
         query = databaseReference!!.child("tarefas")
-        list.clear()
-
         query.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -30,16 +26,23 @@ class ListaTarefasInteractor(_presenter : Presenter) : Interactor {
                     var tarefa: Tarefa = snapshot.getValue(Tarefa::class.java)!!
                     list.add(tarefa!!)
                 }
-            presenter.criaListaTarefas(list)
+                presenter.criaListaTarefas(list)
             } override fun onCancelled(error: DatabaseError) {}
         })
     }
+
+    override fun trazListaTarefas(){
+        list.clear()
+
+    }
     override fun atualizaTarefa(tarefa: Tarefa) {
         databaseReference!!.child("tarefas").child(tarefa.idTarefa.toString()).setValue(tarefa)
-        trazListaTarefas()
+        list.clear()
     }
+
 
     override fun deletaTarefa(idTarefa: String) {
         databaseReference!!.child("tarefas").child(idTarefa).removeValue()
+        list.clear()
     }
 }

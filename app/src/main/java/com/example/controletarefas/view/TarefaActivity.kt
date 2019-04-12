@@ -4,10 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.widget.AdapterView
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.*
+import com.example.controletarefas.MaskWatcher
 import com.example.controletarefas.R
 import com.example.controletarefas.contratos.ContratoTarefa.*
 import com.example.controletarefas.model.Tarefa
@@ -21,8 +21,8 @@ class TarefaActivity : AppCompatActivity() , View {
     private var solicitanteEditText: EditText? = null
     private var dataSolicitacaoEditText : EditText? = null
     private var dataPrevistaEditText: EditText? = null
-    private var statusEditText : EditText? = null
     private var saveButton : FloatingActionButton? = null
+    private var backButton: ImageButton? = null
     private var flag : String? = null
     private var tarefa : Tarefa? = null
     var _status : String? = null
@@ -38,8 +38,15 @@ class TarefaActivity : AppCompatActivity() , View {
         solicitanteEditText= findViewById(R.id.solicitanteEditText)
         dataSolicitacaoEditText= findViewById(R.id.dataSolEditText)
         dataPrevistaEditText= findViewById(R.id.dataPrevEditText)
-        //statusEditText = findViewById(R.id.statusEditText)
+        backButton = findViewById(R.id.btnBackToList)
         saveButton = findViewById(R.id.saveBtn)
+
+
+        backButton!!.setOnClickListener {
+            val intent = Intent(this@TarefaActivity, ListaTarefasActivity::class.java)
+            startActivity(intent)
+        }
+
         spinner.adapter = presenter!!.preencheCampoStatus(this)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -49,8 +56,11 @@ class TarefaActivity : AppCompatActivity() , View {
             }
         }
 
+        dataPrevistaEditText!!.addTextChangedListener(MaskWatcher("##:## ##/##/##"))
         if(flag==null) {
             tarefa = getIntent().getExtras().getSerializable("EXTRA_TAREFA") as Tarefa?
+        }else{
+            dataSolicitacaoEditText!!.setText(presenter!!.registrarData())
         }
 
         if (tarefa!= null){
@@ -89,6 +99,7 @@ class TarefaActivity : AppCompatActivity() , View {
                       )
             }
             val intent = Intent(this@TarefaActivity, ListaTarefasActivity::class.java)
+            intent.putExtra("flag","tarefa")
             startActivity(intent);
         }
     }
@@ -97,4 +108,8 @@ class TarefaActivity : AppCompatActivity() , View {
     override fun exibeToast(_msg: String) {
         Toast.makeText(this, _msg, Toast.LENGTH_LONG).show()
     }
+
+
+
+
 }

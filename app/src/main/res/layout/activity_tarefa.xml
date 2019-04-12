@@ -43,11 +43,11 @@
                 android:singleLine="true"
                 android:textColorHint="@color/colorAccent"
                 android:backgroundTint="@color/colorAccent"
-                android:maxLength="100"
+                android:maxLength="50"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="55dp"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç"/>
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç "/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -66,7 +66,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="55dp"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç"/>
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇçãÃéÉçÇ "/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -84,7 +84,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="55dp"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç"/>
+                android:enabled="false"
+                />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -99,11 +100,12 @@
                 android:singleLine="true"
                 android:textColorHint="@color/colorAccent"
                 android:backgroundTint="@color/colorAccent"
-                android:maxLength="100"
+                android:maxLength="16"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="55dp"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÇç"/>
+                android:digits="0123456789:/ "
+           />
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
@@ -116,15 +118,13 @@
             android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
+            android:layout_gravity="top|end"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="10dp"
             app:srcCompat="@drawable/ic_save"
             app:elevation="4dp"
     />
-
-
 
 </LinearLayout>

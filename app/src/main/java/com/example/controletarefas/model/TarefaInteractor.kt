@@ -6,7 +6,7 @@ import com.example.controletarefas.contratos.ContratoTarefa.*
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.util.*
+
 
 class TarefaInteractor (_presenter : Presenter) : Interactor {
 
@@ -15,7 +15,6 @@ class TarefaInteractor (_presenter : Presenter) : Interactor {
     var firebaseDatabase : FirebaseDatabase? = null
     var databaseReference: DatabaseReference? = null
     private val TAG = "TarefaInteractor"
-
 
     override fun inicializaFirebase(_this : Context){
         FirebaseApp.initializeApp(_this)

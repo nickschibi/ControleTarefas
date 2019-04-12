@@ -7,7 +7,6 @@ import com.example.controletarefas.model.Tarefa
 
 class ListaTarefasPresenter (_view : View): Presenter {
 
-
     private var _view : View = _view
     private var interactor = ListaTarefasInteractor(this)
 
